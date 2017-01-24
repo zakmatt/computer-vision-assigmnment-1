@@ -38,3 +38,6 @@ After comparing
 1. Bayer method has problems with spots where color changes rapidly  
 2. Freeman method results in a more smoothed version of Bayer. This smoothness is noticable especially on the edges(`freeman_oryginal_comparizon.png`)  
 3. Freeman method handles better fast color changes and the differences between those methods are presented in `freeman_bayer_comparizon.png`
+
+# Additional information
+`requirements.txt` file contains libraries that need to be installed before running the scripts.
