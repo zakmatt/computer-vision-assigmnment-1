@@ -1,1 +1,30 @@
-# computer-vision-assigmnment-1
+# Computer Vision - Bayer and Freeman methods
+  
+## Example usage:  
+`python task_x.py -i mosaic_image -c oryginal_image -o output_directory`  
+Where task_x.py is a task defined in a list.  
+`-i` is required and it is a  mosaic image  
+`-c` is required and it is an oryginal image  
+`-o` is not required. It is a directory to which you want to save your results. This directory has to exist.  
+
+# Common methods and concepts
+Both scripts use methods from `controllers.py` file  
+The common thing between these scripts is that we extract three color channels from a mosaic image following the Bayer Pattern presented below
+```
+# R G R G ...
+# G B G B ...
+# R G R G ...
+# B G B G ...
+# ...
+```  
+`split_image` method from `controllers.py` file accepts an `image` as an imput value and returns three channels `red, green, blue` as follows.  
+  
+`interpolate_image` method from `controllers.py` file accepts an `image_channel` and a channel (`'R'`, `'G'` or `'B'` - red, green and blue, respectively). As a result we recive interpolated matrix.  
+  
+`compate_images` takes two images as an input and returns a root squared difference  
+  
+`save_image` takes an image, a path to provided directory and an image name as inputs and returns a string saying how the where the image is saved  
+  
+# Task 1 - Bayer
+
+It is noticable that the result image have problems with places where color changes rapidly or where the intensity of all three channels is big
