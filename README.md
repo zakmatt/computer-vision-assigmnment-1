@@ -27,4 +27,14 @@ The common thing between these scripts is that we extract three color channels f
   
 # Task 1 - Bayer
 
-It is noticable that the result image have problems with places where color changes rapidly or where the intensity of all three channels is big
+It is noticable that the result image have problems with places where color changes rapidly or where the intensity of all three channels is big.
+
+# Task 2 - Freeman
+
+In this task a part from interpolating three channels we filter the 'difference channels' between red and green channels and also between blue and green channels. Later we use median filtering on both results and add a green channel to each of them. After combining the matrices into an image we obtain a smoothen version of Bayer method.  
+After comparing 
+
+# Conclusion
+1. Bayer method has problems with spots where color changes rapidly  
+2. Freeman method results in a more smoothed version of Bayer. This smoothness is noticable especially on the edges(`freeman_oryginal_comparizon.png`)  
+3. Freeman method handles better fast color changes and the differences between those methods are presented in `freeman_bayer_comparizon.png`
