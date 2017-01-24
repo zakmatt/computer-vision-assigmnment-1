@@ -2,13 +2,6 @@
 import argparse
 import cv2
 import controllers
-import numpy as np
-
-def compare_images(image, comparizon_image):
-    result_image = (comparizon_image - image) ** 2
-    result_image_sqrt = np.sqrt(result_image)
-    result_image_sqrt = np.array(result_image_sqrt, dtype = np.uint8)
-    return result_image_sqrt
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -38,6 +31,8 @@ if __name__ == '__main__':
     image_blue = controllers.interpolate_image(image_blue, 'B')
     
     new_image = cv2.merge((image_blue, image_green, image_red))
-    comparizon = compare_images(new_image, comparizon_image)
-    result = controllers.save_image(comparizon, output_path)
+    result = controllers.save_image(new_image, output_path, 'bayer_image.png')
+    print(result)
+    comparizon = controllers.compare_images(new_image, comparizon_image)
+    result = controllers.save_image(comparizon, output_path, 'comparizon.png')
     print(result)

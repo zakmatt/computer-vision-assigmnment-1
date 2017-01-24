@@ -37,7 +37,6 @@ def interpolate_image(image, channel):
         # Interpolation for the red at the missing points
         # First, calculate the missing red pixels at the blue location
         
-        # kernel_red_blue = np.array([[1, 0, 1], [0, 0, 0], [1, 0, 1]])/4
         image_red = cv2.filter2D(image, -1, kernel_2)
         
         # Second, calculate the missing red pixels at the green locations  
@@ -47,7 +46,6 @@ def interpolate_image(image, channel):
         # Interpolation for the blue at the missing points
         # First, calculate the missing blue pixels at the red location
         
-        # kernel_blue_red = np.array([[1, 0, 1], [0, 0, 0], [1, 0, 1]])/4
         image_blue = cv2.filter2D(image, -1, kernel_2)
         # Second, calculate the missing blue pixels at the green locations
         # by averaging the four neighouring blue pixels
@@ -68,10 +66,15 @@ def calculate_difference(oryginal, new_image):
     result_img_sqrt = np.array(result_img_sqrt, dtype = np.uint8)
     return result_img_sqrt
 
-def save_image(image, path):
+def save_image(image, path, name):
     if path is None:
         path = ''
-    file_name = os.path.join(path, 'comparizon.png')
+    file_name = os.path.join(path, name)
     cv2.imwrite(file_name, image)
     return "Saved as: %s" % file_name
     
+def compare_images(image, comparizon_image):
+    result_image = (comparizon_image - image) ** 2
+    result_image_sqrt = np.sqrt(result_image)
+    result_image_sqrt = np.array(result_image_sqrt, dtype = np.uint8)
+    return result_image_sqrt
